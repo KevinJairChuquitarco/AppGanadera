@@ -1,0 +1,133 @@
+body {
+    font-family: "Lato", sans-serif;
+    margin: 0px auto;
+}
+
+header {
+    margin: 0;
+    background-color: #3E73B9;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.textoHeader {
+    text-align:right;
+    margin: 3%;
+}
+.logoHeader {
+    text-align: left;
+}
+
+.logoHeader img{
+    width: 20%;
+    margin: 2%;
+}
+
+header a{
+    display:inline-block;
+    text-decoration: none;
+    color: white;
+}
+
+.logo img{
+    width: 20%;
+}
+.logo{
+    text-align: left;
+}
+/* Codigo para section portada */
+.portada {
+    height: 80vh;
+    background-image: url(images/Portada.png);
+    background-repeat: no-repeat;
+    background-position:center ;
+    background-size: cover; 
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+.portada div {
+    text-align: center;
+    color: white;
+}
+
+section {
+    margin: 0 ;
+    
+}
+
+/* Codigo para section servicios */
+
+.servicios h1 {
+    color: #3E73B9;
+    margin: 2%;
+    text-align: center;
+}
+
+.servicios h2{
+    color:darkgreen;
+    margin: 2%;
+}
+
+.servicios div img {
+    width: 20%;
+}
+
+.servicios div{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.h2Servicios {
+    text-align: right;
+}
+/* css para section contactos */
+
+.contactos h2 {
+    color: #3E73B9;
+    text-align: center;
+}
+.contactos p {
+    text-align: center;
+}
+
+.contactos p a img {
+    width: 35px;
+    margin: 10px;
+}
+
+.contactos p a {
+    text-decoration: none;
+}
+
+/* Codigo para el footer */
+footer {
+    margin: 0 ;
+    background-color: #3E73B9;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+
+footer  div{
+    display: inline-block;
+    color: white;
+    margin: 0;
+}
+
+footer div img {
+    width: 20%;
+    margin: 2%;
+}
+.textoFooter {
+    text-align: left;
+    margin: 3%;
+}
+.logoFooter {
+    text-align: right;
+}
