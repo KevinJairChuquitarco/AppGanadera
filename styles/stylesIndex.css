@@ -40,7 +40,7 @@ header a{
 /* Codigo para section portada */
 .portada {
     height: 80vh;
-    background-image: url(images/Portada.png);
+    background-image: url(../images/Portada.png);
     background-repeat: no-repeat;
     background-position:center ;
     background-size: cover; 
