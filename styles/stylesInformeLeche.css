@@ -30,7 +30,14 @@ header a{
     color: white;
 }
 /* codigo section */
+section {
+    height: 70vh;
+}
 
+section h2 {
+    margin-top: 10px;
+    text-align: center;
+}
 
 /* Codigo para el footer */
 footer {
