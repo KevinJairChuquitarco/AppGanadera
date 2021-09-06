@@ -9,20 +9,22 @@ header {
     display: flex;
     flex-direction: row; 
     justify-content: space-evenly;
-    align-items: flex-start;
+    align-items: flex-start;  
 }
 
 .textoHeader {
     text-align:right;
     margin: 3%;
+    width: 60%;
 }
 .logoHeader {
     text-align: left;
+    padding: 0;
 }
 
 .logoHeader img{
     width: 20%;
-    margin: 2%;
+    margin: 3% 10%;
 }
 
 header a{
@@ -32,7 +34,7 @@ header a{
 }
 
 .logo img{
-    width: 20%;
+    width: 40%;
 }
 .logo{
     text-align: left;
@@ -48,7 +50,9 @@ header a{
     justify-content: center;
     align-items: center;  
 }
-
+#MessageS p{
+    margin: 0 6%;
+}
 .portada div {
     text-align: center;
     color: white;
@@ -75,7 +79,13 @@ section {
 .servicios div img {
     width: 20%;
 }
+.servicios div p {
+    text-align: justify;
+}
+#h1Ser{
 
+    padding-left: 1%;
+}
 .servicios div{
     display: flex;
     justify-content: center;
@@ -83,6 +93,15 @@ section {
 }
 .h2Servicios {
     text-align: right;
+    padding-right: 1%;
+    
+}
+#Message p{
+    margin-left: 3%;
+    margin-right: 3%;
+}
+#Message img{
+    padding: 0 3%;
 }
 /* css para section contactos */
 
@@ -131,10 +150,107 @@ footer div img {
 .logoFooter {
     text-align: right;
 }
-
+@media (max-width: 1024px) and (min-height: 1366px), (max-width: 768px) and (min-height: 1024px) {
+    .servicios, .portada,.contactos,.textoFooter{
+        font-size: 1.3rem;
+    }
+    .logoHeader img{
+        width: 40%;
+        margin: 5% 10%;
+    }
+    .textoHeader a {
+        font-size: 1.4rem;
+        padding: 2%;
+    }
+}
+@media (max-width: 840px) {    
+    .logoHeader img{
+        width: 40%;
+        padding: 2%;
+    }
+    .textoHeader {
+        padding: 2%;
+    }
+}
 @media (max-width: 760px) {
     section { 
         display:table-row;
-    }   
+    }
+    .textoHeader a{
+        font-size: 0.9rem;
+    }
+}
+@media (max-width: 666px) {
+    .textoHeader a {
+        font-size: 0.8rem;
+    }
+    .servicios, .portada,.contactos,.textoFooter{
+        font-size: 0.85em;
+    }
+    .logoHeader img{
+        width: 50%;
+    }
+    .textoHeader {
+        width: 90%;
+    }
+    .textoHeader{
+        display: grid;
+        grid-row: inherit;
+    }
+    .textoHeader a{
+        padding: 1%;
+    }
+    #aux{
+        display: none;
+    }
+}
+@media (max-width: 760px) {
+    .textoHeader a{
+        font-size: 0.70rem;
+    }
+    .servicios, .portada,.contactos{
+        font-size: 0.8rem;
+    }
+    .servicios div img {
+        width: 30%;
+    }
+}
+@media (max-width: 600px) {
+    .portada {
+        height: 60vh;
+        background-position:unset;
 
+    }
+    footer div img {
+        width: 40%;
+        padding: 2%;
+    }
+}
+@media (max-width: 330px) {
+    .textoHeader a{
+        font-size: 0.60rem;
+    }
+    .servicios, .portada,.contactos{
+        font-size: 0.65rem;
+    }
+    .logoHeader img{
+        width: 50%;
+    }
+    #aux{
+        display: inline;
+    }
+    .textoHeader{
+        display: inline;
+    }
+    header{
+        display: flexbox;
+        flex-direction: column; 
+    }
+    .servicios div img {
+        width: 40%;
+    }
+    .contactos p a img {
+        width: 20px;
+        
+    }
 }
