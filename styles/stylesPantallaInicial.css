@@ -42,7 +42,8 @@ section {
     width: 200px;
 }
 #btn1{
-    background-image: url(../images/GestionGanado.jpg);
+    background-image: url(../images/GestionGanado.png);
+    background-position:left bottom;
     margin-right: 50px;
 }
 #btn2{
@@ -72,4 +73,59 @@ footer  div{
 .textoFooter {
     text-align: left;
     margin: 3%;
+}
+@media (max-width: 1024px) and (min-height: 1366px), (max-width: 768px) and (min-height: 1024px){
+    .textoFooter,.textoHeader {
+        font-size: 1.6rem;
+        padding: 2%;
+    }
+    header p img {
+        width: 250px;
+        padding: 2%;
+    }
+    .dropdown button{
+        height: 280px;
+        width: 300px;
+    }
+    .dropdown button{
+        font-size: 2rem;
+    }
+    #btn1{
+        background-image: url(../images/GestionGanadoAux.png);
+        background-position:left bottom;
+        margin-right: 50px;
+    }
+}
+@media (max-width: 550px) {
+    .options{
+        display: flexbox;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    #btn1,#btn2{
+        margin: 0 0;
+    }
+}
+@media (max-width: 400px) {
+    .dropdown button{
+        height: 150px;
+        width: 150px;
+    }
+    #btn1{
+        background-position:right;
+    }
+    .textoFooter,.textoHeader {
+        font-size: 0.8rem;
+        padding: 2%;
+    }
+}
+@media (max-width: 290px) {
+    header{
+        display: flexbox;
+        flex-direction: column; 
+    }
+    .textoHeader{
+        align-self:flex-end;
+        padding: 0;
+    }
 }
