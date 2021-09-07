@@ -38,10 +38,10 @@ header a{
 }
 .formulario {
     margin: 2% 5%;
-    height: 55vh;
+    height: 58vh;
 }
 .formulario div {
-    margin: 5px 10%;
+    margin: 4px 10%;
     text-align: center;
     justify-content:space-between;   
 }
@@ -58,7 +58,6 @@ header a{
 
 .btn {
     background-color:#3E73B9 !important;
-    margin: 1% 0;
     padding: 8px !important;
 }
 #password{
