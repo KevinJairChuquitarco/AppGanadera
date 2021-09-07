@@ -74,28 +74,6 @@ footer  div{
     text-align: left;
     margin: 3%;
 }
-@media (max-width: 1024px) and (min-height: 1366px), (max-width: 768px) and (min-height: 1024px){
-    .textoFooter,.textoHeader {
-        font-size: 1.6rem;
-        padding: 2%;
-    }
-    header p img {
-        width: 250px;
-        padding: 2%;
-    }
-    .dropdown button{
-        height: 280px;
-        width: 300px;
-    }
-    .dropdown button{
-        font-size: 2rem;
-    }
-    #btn1{
-        background-image: url(../images/GestionGanadoAux.png);
-        background-position:left bottom;
-        margin-right: 50px;
-    }
-}
 @media (max-width: 550px) {
     .options{
         display: flexbox;
@@ -127,5 +105,58 @@ footer  div{
     .textoHeader{
         align-self:flex-end;
         padding: 0;
+    }
+}
+@media (min-height: 560px) {
+    .options{
+        height: 76vh;
+    }
+}
+@media (min-height: 640px) {
+    .options{
+        height: 78vh;
+    }
+}
+@media (min-height: 710px) {
+    .options{
+        height: 79vh;
+    }
+}
+@media (min-height: 730px) {
+    .options{
+        height: 81vh;
+    }
+}
+@media (min-height: 810px) {
+    .options{
+        height: 82.5vh;
+    }
+}
+@media (max-width: 1024px) and (min-height: 1366px), (max-width: 768px) and (min-height: 1024px){
+    .textoFooter,.textoHeader {
+        font-size: 1.6rem;
+        padding: 2%;
+    }
+    header p img {
+        width: 250px;
+        padding: 2%;
+    }
+    .dropdown button{
+        height: 280px;
+        width: 300px;
+    }
+    .dropdown button{
+        font-size: 2rem;
+    }
+    #btn1{
+        background-image: url(../images/GestionGanadoAux.png);
+        background-position:left bottom;
+        margin-right: 50px;
+    }
+    .options{
+        height: 73vh;
+    }
+    footer{
+        height: 15vh;
     }
 }

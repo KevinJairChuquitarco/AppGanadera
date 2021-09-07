@@ -5,26 +5,25 @@ body {
 header {
     margin: 0;
     background-color: #3E73B9;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-evenly;
+    align-items: flex-start; 
 }
-header {
-    display: grid;
-    grid-template-columns: 49% 49%;
-}
+
 .textoHeader {
     text-align:right;
     margin: 3%;
     padding: 2%;
 }
-header p{
-    margin: 2%;
-    font-weight: normal;
+.logoHeader {
+    text-align: left;
+    padding: 0;
 }
-
-header p img {
-    width: 40%;
-    padding: 2% 10%;
+.logoHeader img{
+    width: 20%;
+    margin: 3% 10%;
 }
-
 header a{
     display:inline-block;
     text-decoration: none;
@@ -32,13 +31,12 @@ header a{
 }
 
 /* codigo para form */
-
-#fecha{
+#Nombre{
     margin-top: 5%;
 }
 .formulario {
     margin: 2% 5%;
-    height: 65vh;
+    height: 66vh !important;
 }
 .formulario h2{
     text-align: center;
@@ -52,12 +50,15 @@ header a{
 .formulario p{
     text-align: center;
 }
-
+#textBox{
+    width: 45%;
+}
 .btn {
     background-color:#3E73B9 !important;
-    margin: 1.5% 0;
-    padding: 8px !important;
+    margin: 4% 0;
+    padding: 3% !important;
 }
+
 /* Codigo para el footer */
 footer {
     margin: 0 ;
@@ -80,3 +81,152 @@ footer  div{
     text-align: center;
     padding: 1.8%;
 }
+@media (max-width: 920px) {
+    .formulario div {
+        margin: 5px 5%;  
+    }
+    .logoHeader img{
+        width: 40%;
+        padding: 2%;
+    }
+    .formulario{
+        height: auto;
+    }
+    header> h1{
+        font-size: 2em;
+        padding: 3%;
+    }
+    .textoHeader a,.textoFooter{
+        padding: 3%;
+    }
+    #textBox{
+        width: 60%;
+    }
+}
+
+@media (max-width: 650px) {
+    .formulario div {
+        margin: 5px 3%;  
+    }
+    header> h1{
+        font-size: 1.4rem;
+        align-self: center;
+    }
+    .textoFooter{
+        font-size: 0.8rem;
+    }
+    #aux{
+        display: none;
+    }
+    .textoHeader a {
+        font-size: 0.8rem;
+        padding: 1%;
+    }
+    .textoHeader{
+        display: grid;
+        grid-row: inherit;
+        width: 90%;
+    }
+    .logoHeader img{
+        width: 50%;
+    }
+}
+@media (max-width: 465px) {
+    .formulario div {
+        margin: 2px 3%;  
+        display: flexbox;
+        flex-direction: column; 
+        align-items: flex-start !important;
+        font-size: 0.75rem;
+    }
+    #textBox{
+        width: 94%;
+    }
+    header> h1{
+        font-size: 1.2rem;
+        align-self: center;
+    }
+    .textoHeader a,.textoFooter{
+        font-size: 0.95rem;
+    }
+    .textoFooter {
+        padding: 3%;
+    }
+    input{
+        font-size: 0.75rem !important;
+    }
+    #aux{
+        display: inline;
+    }
+    .textoHeader{
+        display: inline;
+    }
+    header{
+        display: flexbox;
+        flex-direction: column; 
+    }
+}
+@media (min-height: 560px) {
+    .formulario{
+        height: 62.2vh !important;
+    }
+}
+@media (min-height: 560px) {
+    .formulario{
+        height: 63.2vh !important;
+    }
+}
+@media (min-height: 730px) {
+    .formulario{
+        height: 64.2vh !important;
+    }
+}
+@media (min-height: 812px) {
+    .formulario{
+        height: 69vh !important;
+    }
+}
+@media (max-width: 1024px) and (min-height: 1366px), (max-width: 768px) and (min-height: 1024px) {
+    header{
+        height: auto;
+    }
+    header> h1{
+        font-size: 2.5em;
+        padding: 3%;
+    }
+    .textoHeader{
+        padding: 3%;
+        font-size: 1.5em;
+    }
+    .formulario, .textoFooter{
+        font-size: 1.5em;   
+    }
+    .formulario div {
+        margin: 2% 1%;  
+    }
+    .btn {
+        font-size: 1.2rem !important;
+        padding: 2% 4% !important;
+    }
+    input{
+        font-size: 1.4rem !important;
+    }
+    footer div img {
+        width: 35%;
+        padding: 3%;
+    }
+    #textBox{
+        width: 55%;
+    }
+    .formulario{
+        height: 70vh;
+    }
+    .logoHeader img{
+        width: 40%;
+        margin: 5% 10%;
+    }
+    #aux{
+        display: none;
+    }
+}
+

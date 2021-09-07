@@ -66,11 +66,13 @@ section {
 }
 
 @media (max-width: 760px) {
-    section { 
-        display:table-row;
+    body{
+        display: grid;
+        grid-row:span;
     }   
     .section1 {
-        height: 50vh;
+        width: 100%;
+        height: auto;
     }
     
     .textoPrincipal p img{
@@ -83,6 +85,7 @@ section {
     }
 
     .section2 {
+        width: 100%;
         height: 50vh;
         text-align: center;
     }
@@ -91,11 +94,31 @@ section {
         margin: 2.5%;
         width: 95%;
     }
+    div h1{
+        font-size: 1.2rem;
+    }
 }
 
 @media (max-width: 412px) {
     .textoPrincipal p img{
         width: 20%;
         margin: 5px;
+    }
+    input{
+        font-size: 0.85rem !important;
+    }
+    .section2{
+        font-size: 0.85rem;
+        margin: 0;
+        padding: 0;
+    }
+    div h1{
+        font-size: 1.3rem;
+    }
+    .textoPrincipal{
+        font-size: 0.9em;
+    }
+    .btn{
+        font-size: 0.9rem !important;
     }
 }

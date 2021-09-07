@@ -180,6 +180,18 @@ footer div img {
         font-size: 0.9rem;
     }
 }
+
+@media (max-width: 760px) {
+    .textoHeader a{
+        font-size: 0.70rem;
+    }
+    .servicios, .portada,.contactos{
+        font-size: 0.8rem;
+    }
+    .servicios div img {
+        width: 30%;
+    }
+}
 @media (max-width: 666px) {
     .textoHeader a {
         font-size: 0.8rem;
@@ -202,17 +214,6 @@ footer div img {
     }
     #aux{
         display: none;
-    }
-}
-@media (max-width: 760px) {
-    .textoHeader a{
-        font-size: 0.70rem;
-    }
-    .servicios, .portada,.contactos{
-        font-size: 0.8rem;
-    }
-    .servicios div img {
-        width: 30%;
     }
 }
 @media (max-width: 600px) {
