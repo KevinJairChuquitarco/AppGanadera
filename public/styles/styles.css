@@ -1,7 +1,8 @@
 body {
-    font-family: "Lato", sans-serif;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
     margin: 0px auto;
 }
+
 .textoPrincipal p img{
     width: 30%;
     margin: 5px;

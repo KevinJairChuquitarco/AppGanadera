@@ -1,5 +1,5 @@
 body {
-    font-family: "Lato", sans-serif;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
     margin: 0px auto;
 }
 header {
@@ -33,7 +33,7 @@ header a{
 
 /* codigo para form */
 
-#Nombre{
+#nombre{
     margin-top: 5%;
 }
 .formulario {
@@ -48,13 +48,13 @@ header a{
     text-align: center;
     justify-content:space-between;   
 }
-#textBox{
-    width: 45%;
-}
+
 .formulario p{
     text-align: center;
 }
-
+.selector {
+    width: 250px !important;
+}
 .btn {
     background-color:#3E73B9 !important;
     margin: 1.5% 0;

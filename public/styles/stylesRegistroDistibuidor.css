@@ -1,5 +1,5 @@
 body {
-    font-family: "Lato", sans-serif;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
     margin: 0px auto;
 }
 header {
@@ -33,7 +33,7 @@ header a{
 
 /* codigo para form */
 
-#fecha{
+#Nombre{
     margin-top: 5%;
 }
 .formulario {
@@ -48,7 +48,9 @@ header a{
     text-align: center;
     justify-content:space-between;   
 }
-
+#textBox{
+    width: 45%;
+}
 .formulario p{
     text-align: center;
 }

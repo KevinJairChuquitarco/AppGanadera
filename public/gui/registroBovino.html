@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="images/Iconos/IconoAppGanadera.png">
-    <link rel="stylesheet" href="styles/stylesRegistroDistibuidor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/stylesRegistroBovino.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <title>Registro Distribuidor</title>
+    <title>Registro Bovino</title>
 </head>
 <body>
     <header>
@@ -21,29 +24,41 @@
         </div>
     </header>
     <form class="formulario">
-        <h2>Registro de Distribuidor</h2>
-        <div class="row g-3 align-items-center" id="Nombre">
+        <h2>Registro Bovino</h2>
+        <div class="row g-3 align-items-center">
             <div class="col-auto">
-                <label  class="form-label">Nombre:</label>
+                <label class="col-form-label" id="codigo">Código:</label>
             </div>
-            <div class="col-auto" id="textBox">
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div class="col-auto" >
+                <input type="text" class="form-control" >
             </div>
         </div>
         <div class="row g-3 align-items-center">
             <div class="col-auto">
-                <label  class="form-label">Ruc:</label>
+                <label class="col-form-label">Nombre:</label>
             </div>
-            <div class="col-auto" id="textBox">
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div class="col-auto">
+                <input type="text" class="form-control" >
             </div>
         </div>
         <div class="row g-3 align-items-center">
             <div class="col-auto">
-                <label  class="form-label">Direccion:</label>
+                <label class="col-form-label">Fecha de Nacimiento:</label>
             </div>
-            <div class="col-auto" id="textBox">
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div class="col-auto" >
+                <input type="date" class="form-control" >
+            </div>
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label">Género:</label>
+            </div>
+            <div class="col-auto">
+                <select class="form-select form-select-sm" >
+                    <option selected">Seleccione</option>
+                    <option value="1">Macho</option>
+                    <option value="2">Hembra</option>
+                </select>
             </div>
         </div>
         <p>
