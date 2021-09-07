@@ -19,6 +19,8 @@
   "homepage": "https://github.com/KevinJairChuquitarco/AppGanadera#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "handlebars": "^4.7.7"
+    "handlebars": "^4.7.7",
+    "mssql": "^7.2.1",
+    "rest-mssql-nodejs": "^1.0.10"
   }
 }
