@@ -12,7 +12,7 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/registrarUsuario.html',(req,res)=>{
-    res.send(__dirname + '/registrarUsuario.html');
+    res.send('registrarUsuario.html');
 });
 
 app.listen(port,()=>{
