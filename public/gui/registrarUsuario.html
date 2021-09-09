@@ -27,7 +27,7 @@
                 <label  class="form-label">Nombre:</label>
             </div>
             <div class="col-auto" id="textBox">
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp">
             </div>
         </div>
         <div class="row g-3 align-items-center">
@@ -35,7 +35,7 @@
                 <label class="col-form-label">Fecha de Nacimiento:</label>
             </div>
             <div class="col-auto" >
-                <input type="date" class="form-control fecha" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="date" class="form-control fecha" id="fechaNac" aria-describedby="emailHelp">
             </div>
         </div>
         <div class="row g-3 align-items-center">
@@ -43,7 +43,7 @@
                 <label  class="form-label">Teléfono:</label>
             </div>
             <div class="col-auto" id="textBox">
-                <input type="tel" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="tel" class="form-control" id="telefono" aria-describedby="emailHelp">
             </div>
         </div>
         <div class="row g-3 align-items-center">
@@ -51,7 +51,7 @@
                 <label  class="form-label">Email:</label>
             </div>
             <div class="col-auto" id="textBox">
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
             </div>
         </div>
         <div class="row g-3 align-items-center" id="password">
@@ -63,7 +63,7 @@
             </div>
         </div>
         <p>
-            <button type="button" class="btn btn-primary btn-sm col-auto">Registrarte</button>
+            <button type="button" class="btn btn-primary btn-sm col-auto" onclick="registrar();">Registrarte</button>
         </p>
     </form>
     <footer>
@@ -74,5 +74,6 @@
             <img src="images/LogoAppGanadera-Letras.png" alt="">
         </div>
     </footer>
+    <script src="registrarUsuario.js"></script>
 </body>
 </html>
