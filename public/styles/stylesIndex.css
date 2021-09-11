@@ -172,16 +172,11 @@ footer div img {
         padding: 2%;
     }
 }
+
 @media (max-width: 760px) {
     section { 
         display:table-row;
     }
-    .textoHeader a{
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 760px) {
     .textoHeader a{
         font-size: 0.70rem;
     }
@@ -202,12 +197,10 @@ footer div img {
     .logoHeader img{
         width: 50%;
     }
-    .textoHeader {
-        width: 90%;
-    }
     .textoHeader{
         display: grid;
         grid-row: inherit;
+        width: 90%;
     }
     .textoHeader a{
         padding: 1%;
@@ -233,9 +226,6 @@ footer div img {
     }
     .servicios, .portada,.contactos{
         font-size: 0.65rem;
-    }
-    .logoHeader img{
-        width: 50%;
     }
     #aux{
         display: inline;

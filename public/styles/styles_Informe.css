@@ -15,16 +15,14 @@ header {
     margin: 3%;
     padding: 2%;
 }
-header p{
-    margin: 2%;
-    font-weight: normal;
+.logoHeader {
+    text-align: left;
+    padding: 0;
 }
-
-header p img {
-    width: 40%;
-    padding: 2% 10%;
+.logoHeader img{
+    width: 20%;
+    margin: 3% 10%;
 }
-
 header a{
     display:inline-block;
     text-decoration: none;

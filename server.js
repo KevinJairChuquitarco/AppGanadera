@@ -2,18 +2,28 @@ const funciones = require('./funciones');
 
 const express = require('express');
 const app = express();
+const hbs = require('hbs');
 
+//Recuperar datos
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('static'));
-
+//Puerto
 const port = process.env.PORT || 3000 ; 
 
+//Express HBS view engine
+app.set('view engine', 'hbs');
+//Donde cargar los archivos estaticos
 app.use(express.static(__dirname + '/public'));
+//Parciales
+hbs.registerPartials(__dirname+'/views/partials');
 
-app.set('view engine','hbs');
 app.get('/',(req,res)=>{
     res.render('index');
+});
+
+app.get('/inicioSesion',(req,res)=>{
+    res.render('inicioSesion');
 });
 
 app.get('/registrarUsuario',(req,res)=>{
@@ -26,10 +36,27 @@ app.post('/registrarUsuario',(req,res)=>{
     res.send("Listo");
 });
 
-app.get('/inicioSesion',(req,res)=>{
-    res.render('inicioSesion');
+app.get('/inicio_usuario',(req,res)=>{
+    res.render('inicio_usuario');
 });
-
+app.get('/registro_Bovino',(req,res)=>{
+    res.render('registro_Bovino');
+});
+app.get('/registro_Categoria',(req,res)=>{
+    res.render('registro_Categoria');
+});
+app.get('/registro_Distribuidor',(req,res)=>{
+    res.render('registro_Distribuidor');
+});
+app.get('/registro_LecheDiario',(req,res)=>{
+    res.render('registro_LecheDiario');
+});
+app.get('/registro_Periodo',(req,res)=>{
+    res.render('registro_Periodo');
+});
+app.get('/informe_Leche',(req,res)=>{
+    res.render('informe_Leche');
+});
 app.listen(port,()=>{
     console.log(`Escuchando el puerto ${port}`);
 });
