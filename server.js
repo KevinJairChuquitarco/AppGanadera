@@ -58,7 +58,6 @@ app.get('/registro_Periodo',(req,res)=>{
 app.get('/informe_Leche',(req,res)=>{
     res.render('informe_Leche');
 });
-<<<<<<< HEAD
 
 app.post('/inicioSesion',(req,res)=>{
     usuario = req.body;
@@ -70,8 +69,6 @@ app.post('/inicioSesion',(req,res)=>{
 	}
 });
 
-=======
->>>>>>> 34dde034f4cde3c5d5106eb343b86f15cf7fdc3e
 app.listen(port,()=>{
     console.log(`Escuchando el puerto ${port}`);
 });
