@@ -1,0 +1,44 @@
+{{>header_main archivo="styles/styles_RegistroMain.css" title="Registro Bovino"}}
+ <form class="formulario">
+        <h2>Registrar Bovino</h2>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label" id="codigo">Código:</label>
+            </div>
+            <div class="col-auto" id="textBox">
+                <input type="text" class="form-control" >
+            </div>
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label">Nombre:</label>
+            </div>
+            <div class="col-auto" id="textBox">
+                <input type="text" class="form-control" >
+            </div>
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label">Fecha de Nacimiento:</label>
+            </div>
+            <div class="col-auto">
+                <input type="date" class="form-control" >
+            </div>
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label">Género:</label>
+            </div>
+            <div class="col-auto" id="textBox">
+                <select class="form-select form-select-sm" >
+                    <option selected>Seleccione</option>
+                    <option value="1">Macho</option>
+                    <option value="2">Hembra</option>
+                </select>
+            </div>
+        </div>
+        <p>
+            <button type="button" class="btn btn-primary btn-sm col-auto">Registrar</button>
+        </p>
+    </form>
+{{>footer_main}}

@@ -1,3 +1,4 @@
+/* Codigo para el header */
 body {
     font-family: 'IBM Plex Sans Arabic', sans-serif;
     margin: 0px auto;
@@ -10,11 +11,9 @@ header {
     justify-content: space-evenly;
     align-items: flex-start; 
 }
-
 .textoHeader {
     text-align:right;
     margin: 3%;
-    padding: 2%;
 }
 .logoHeader {
     text-align: left;
@@ -29,34 +28,34 @@ header a{
     text-decoration: none;
     color: white;
 }
-
 /* codigo para form */
-#Nombre{
-    margin-top: 5%;
+#textBox{
+    width: 45%;
 }
 .formulario {
     margin: 2% 5%;
-    height: 66vh !important;
+    height: 68vh !important;
 }
 .formulario h2{
     text-align: center;
+}
+.formulario h5{
+    text-align: center;
+    font-weight:normal;
+    margin: 30px 0;
 }
 .formulario div {
     margin: 8px 10%;
     text-align: center;
     justify-content:space-between;   
 }
-
 .formulario p{
     text-align: center;
-}
-#textBox{
-    width: 45%;
 }
 .btn {
     background-color:#3E73B9 !important;
     margin: 4% 0;
-    padding: 3% !important;
+    padding: 1% 3% !important;
 }
 
 /* Codigo para el footer */
@@ -81,6 +80,8 @@ footer  div{
     text-align: center;
     padding: 1.8%;
 }
+
+/* Codigo para hacer responsive */
 @media (max-width: 920px) {
     .formulario div {
         margin: 5px 5%;  
@@ -103,7 +104,20 @@ footer  div{
         width: 60%;
     }
 }
-
+@media (max-width: 840px) {    
+    .logoHeader img{
+        width: 40%;
+        padding: 2%;
+    }
+    .textoHeader {
+        padding: 2%;
+    }
+}
+@media (max-width: 760px) {
+    .textoHeader a{
+        font-size: 0.70rem;
+    }
+}
 @media (max-width: 650px) {
     .formulario div {
         margin: 5px 3%;  
@@ -166,9 +180,19 @@ footer  div{
         flex-direction: column; 
     }
 }
-@media (min-height: 560px) {
-    .formulario{
-        height: 62.2vh !important;
+@media (max-width: 330px) {
+    .textoHeader a{
+        font-size: 0.60rem;
+    }
+    #aux{
+        display: inline;
+    }
+    .textoHeader{
+        display: inline;
+    }
+    header{
+        display: flexbox;
+        flex-direction: column; 
     }
 }
 @media (min-height: 560px) {
@@ -181,7 +205,7 @@ footer  div{
         height: 64.2vh !important;
     }
 }
-@media (min-height: 812px) {
+@media (min-height: 812px) and (max-height: 900px) {
     .formulario{
         height: 69vh !important;
     }
@@ -229,4 +253,3 @@ footer  div{
         display: none;
     }
 }
-
