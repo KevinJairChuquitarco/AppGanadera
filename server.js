@@ -77,19 +77,6 @@ app.get('/registro_Periodo',(req,res)=>{
 app.get('/informe_Leche',(req,res)=>{
     res.render('informe_Leche');
 });
-<<<<<<< HEAD
-
-app.post('/inicioSesion',(req,res)=>{
-    usuario = req.body;
-    console.log(funciones.LoginUs(usuario.email, usuario.password))
-    if (funciones.LoginUs(usuario.email, usuario.password)==true) {
-        res.send('exito');
-	} else {
-		res.send('Please enter Username and Password!');
-	}
-});
-
-=======
 //Método POST
 app.post('/inicioSesion',(req,res, next)=>{
     passport.authenticate('local.inicioSesion',{
@@ -98,7 +85,6 @@ app.post('/inicioSesion',(req,res, next)=>{
     })(req, res, next);
 });
 //Listen server
->>>>>>> ae1d446ed60acd38bfd8f5e6715180ef429ac522
 app.listen(port,()=>{
     console.log(`Escuchando el puerto ${port}`);
 });
