@@ -9,7 +9,7 @@ passport.use('local.inicioSesion', new LocalStrategy({
     passReqToCallback: true
 }, async (req, email, password, done)=>{
     const result = (await conexion).request().query(`Select *from Usuario where Email_usu = '${email}'`);
-    if((await result).recordsets.length > 0) {
+    if((await result).recordset.length > 0) {
         
         const user = (await result).recordset[0];
         const passBD = user.Password_usu.trim();
@@ -30,11 +30,12 @@ passport.use('local.inicioSesion', new LocalStrategy({
 
 //Serializar
 passport.serializeUser((user, done) =>{
+    console.log('Usuario serializado');
     done(null, user.Email_usu);
 });
 
 passport.deserializeUser(async (id,done)=>{
-    const rows = (await conexion).request().query(`Select *from Usuario where Email_usu = '${id}'`);
-    
+    const rows = (await conexion).request().query(`Select *from Usuario where Email_usu = '${id}'`);   
+    console.log('Usuario de-serializado');
     done(null, (await rows).recordset[0]);
 });

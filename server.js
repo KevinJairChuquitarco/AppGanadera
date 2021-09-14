@@ -7,6 +7,7 @@ const express = require('express');
 const session = require('express-session');
 const hbs = require('hbs');
 const passport = require('passport');
+const { doesNotMatch } = require('assert');
 
 //Inicializaciones
 const app = express();
@@ -24,7 +25,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 //Variable Globales
 app.use((req, res, next)=>{
-    app.locals.user = req.user;
+    app.locals.user = req.user;    
     next();
 })
 
@@ -37,6 +38,8 @@ app.set('view engine', 'hbs');
 app.use(express.static(__dirname + '/public'));
 //Parciales
 hbs.registerPartials(__dirname+'/views/partials');
+//Llamar al archivo de helpers
+require('./hbs/helpers');
 
 //Métodos GET
 app.get('/',(req,res)=>{
@@ -64,11 +67,29 @@ app.post('/registrarUsuario', async(req,res)=>{
 });
 
 app.get('/inicio_usuario',(req,res)=>{
-    res.render('inicio_usuario');
-    console.log(req.user.Nombre_usu);
+    res.render('inicio_usuario');    
 });
 app.get('/registro_Bovino',(req,res)=>{
-    res.render('registro_Bovino');
+    var fs = require('fs');
+    const getCategoriasBD = async()=>{
+        let conexion = await sql.connect(config);
+        const usuario = app.locals.user;
+      //  console.log(usuario.Codigo_usu);
+        const result =  await conexion.request().query("Select cg.Nombre_cat, cg.Codigo_cat, cg.Descripcion_cat from CategoriaGanado cg INNER JOIN Bovino bv ON bv.Codigo_usu = "+ usuario.Codigo_usu+" and cg.Codigo_cat = bv.Codigo_cat");
+      // Select cg.Nombre_cat, cg.Codigo_cat, cg.Descripcion_cat from CategoriaGanado cg INNER JOIN Bovino bv ON bv.Codigo_usu ='3' and cg.Codigo_cat = bv.Codigo_cat;
+        const categorias = result.recordset;
+        return categorias;
+    }
+    getCategoriasBD().then(categorias => {
+        console.log(categorias);
+        var categoriasstring = JSON.stringify(categorias);
+        fs.writeFile("hbs/categorias.json", categoriasstring, function (err) {
+            if(err) console.log('error', err);
+            else console.log('Archivo guardado');
+        });
+        
+        res.render('registro_Bovino');
+    })  
 });
 app.post('/registro_Bovino',(req,res)=>{
     let bovino = req.body;
@@ -81,7 +102,7 @@ app.post('/registro_Bovino',(req,res)=>{
     getDatos(bovino.codigo);
     setTimeout(() => { 
         if(bovinoDB == undefined){
-            //funciones.RegistrarBovino('datos ');
+           // funciones.RegistrarBovino(bovino.codigo,bovino.nombre,bovino.fechaNac,'Holstein',bovino.sexo,req.user.Codigo_usu,bovino.categoria);
             console.log('Registrado con éxito');
             res.render('inicio_usuario');
         }else{
