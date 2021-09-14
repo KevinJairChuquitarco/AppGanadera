@@ -1,12 +1,12 @@
 {{>header_main archivo="styles/styles_RegistroMain.css" title="Registro Categoría"}}
-<form class="formulario">
+<form class="formulario" action="/registro_Categoria" method="POST">
         <h2>Registrar Categoría</h2>
         <div class="row g-3 align-items-center" id="Nombre">
             <div class="col-auto">
                 <label class="col-form-label" id="fecha">Nombre:</label>
             </div>
             <div class="col-auto" id="textBox" >
-                <input type="text" class="form-control" >
+                <input type="text" class="form-control" name="nombre">
             </div>
         </div>
         <div class="row g-3 align-items-center">
@@ -14,11 +14,11 @@
                 <label  class="form-label">Descripción:</label>
             </div>
             <div class="col-auto" id="textBox">
-                <textarea class="form-control" cols="22" rows="5"></textarea>
+                <textarea class="form-control" cols="22" rows="5" name="descripcion"></textarea>
             </div>
         </div>
         <p>
-            <button type="button" class="btn btn-primary btn-sm col-auto">Registrar</button>
+            <button type="submit" class="btn btn-primary btn-sm col-auto">Registrar</button>
         </p>
     </form>
 {{>footer_main}}

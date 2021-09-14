@@ -54,7 +54,8 @@ header a{
 }
 .btn {
     background-color:#3E73B9 !important;
-    margin: 4% 0;
+    /* margin: 4% 0; */
+    margin: 0 0;
     padding: 1% 3% !important;
 }
 
