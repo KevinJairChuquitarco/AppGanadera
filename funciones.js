@@ -1,17 +1,24 @@
+const { text } = require("express");
 let sql = require("mssql");
+require('rest-mssql-nodejs');
 const config = require('./config');
 
 const funciones = {
-    obtenerDatosUsuario: function(id){
+    obtenerDatosUsuario: function(email, pass){
         sql.connect(config, function (err) {
             if (err) console.log(err);
             var request = new sql.Request();
-            request.query(`select *from Usuario where Codigo_usu=${id}`, function (err, recordset) {
-                
-                if (err) console.log(err)
-    
-                console.log(recordset.recordset);  
+            request.query(`Select Email_usu, Password_usu from Usuario where Email_usu='${email}'`, async (err, results) => {
+                if(results.recordset.length != 0){
+                    let passBD = results.recordset[0].Password_usu;
+                    if(results.recordset.length == 0 || !(passBD.trim() === pass )){
+                        console.log("Usuario Y/O password Incorrectas");
+                    }else{
+                        console.log("Login correcto");
+                    }                    
+                }                
             });
+            
         });
     },
     RegistrarUsuario : function (nombre,fechaNac,telefono,email,password) {

@@ -1,6 +1,6 @@
 var config = {
     user: 'sa',
-    password: '27072000',
+    password: 'mISS hACK',
     server: 'localhost', 
     database: 'AppGanadera', 
     options: { 

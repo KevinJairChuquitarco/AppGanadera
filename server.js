@@ -1,13 +1,30 @@
 const funciones = require('./funciones');
 
 const express = require('express');
-const app = express();
+const session = require('express-session');
 const hbs = require('hbs');
+const passport = require('passport');
 
-//Recuperar datos
+//Inicializaciones
+const app = express();
+require('./passport');
+//Middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(session({
+    secret: 'mysecretkey-proyect23567',
+    resave: false,
+    saveUninitialized: false
+}));
 app.use(express.static('static'));
+app.use(passport.initialize());
+app.use(passport.session());
+//Variable Globales
+app.use((req, res, next)=>{
+    app.locals.user = req.user;
+    next();
+})
+
 //Puerto
 const port = process.env.PORT || 3000 ; 
 
@@ -18,6 +35,7 @@ app.use(express.static(__dirname + '/public'));
 //Parciales
 hbs.registerPartials(__dirname+'/views/partials');
 
+//Métodos GET
 app.get('/',(req,res)=>{
     res.render('index');
 });
@@ -30,14 +48,15 @@ app.get('/registrarUsuario',(req,res)=>{
     res.render('registrarUsuario');
 });
 
-app.post('/registrarUsuario',(req,res)=>{
+app.post('/registrarUsuario', async(req,res)=>{
     let datos = req.body;
     funciones.RegistrarUsuario(datos.nombre,'2000/12/01',datos.telefono,datos.email,datos.password);
-    res.send("Listo");
+    res.redirect('/inicio_usuario');
 });
 
 app.get('/inicio_usuario',(req,res)=>{
     res.render('inicio_usuario');
+    console.log(req.user.Nombre_usu);
 });
 app.get('/registro_Bovino',(req,res)=>{
     res.render('registro_Bovino');
@@ -57,6 +76,14 @@ app.get('/registro_Periodo',(req,res)=>{
 app.get('/informe_Leche',(req,res)=>{
     res.render('informe_Leche');
 });
+//Método POST
+app.post('/inicioSesion',(req,res, next)=>{
+    passport.authenticate('local.inicioSesion',{
+        successRedirect: '/inicio_usuario',
+        failureRedirect: '/inicioSesion'
+    })(req, res, next);
+});
+//Listen server
 app.listen(port,()=>{
     console.log(`Escuchando el puerto ${port}`);
 });
