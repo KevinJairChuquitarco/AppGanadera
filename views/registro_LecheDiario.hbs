@@ -1,13 +1,36 @@
 {{>header_main archivo="styles/styles_RegistroMain.css" title="Registro de leche Diario"}}
-<form class="formulario">
-        <h2>Registro de leche Diario</h2>
-        <h5>Periodo del 01/08/2021 al 15/08/2021</h5>
+<form class="formulario" action="/registro_LecheDiario" method="POST">
+        <h2>Registro Diario de Leche</h2>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label">Periodo:</label>
+            </div>
+            <div class="col-auto" id="textBox">
+                <select class="form-select form-select-sm" name="sexo" >
+                    <option selected>Seleccione</option>
+                    <option value="1">14-09-2021 al 29-09-2021</option>
+                    <option value="2">15-09-2021 al 30-09-2021</option>
+                </select>
+            </div>
+        </div>
         <div class="row g-3 align-items-center">
             <div class="col-auto">
                 <label class="col-form-label" id="fecha">Fecha:</label>
             </div>
             <div class="col-auto" >
-                <input type="date" class="form-control" >
+                <input type="date" name="fecha" class="form-control" >
+            </div>
+        </div>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label">Distribuidor:</label>
+            </div>
+            <div class="col-auto" id="textBox">
+                <select class="form-select form-select-sm" name="sexo" >
+                    <option selected>Seleccione</option>
+                    <option value="1"> Kevin Velasco</option>
+                    <option value="2"> Estefanía Castillo</option>
+                </select>
             </div>
         </div>
         <div class="row g-3 align-items-center">
@@ -15,11 +38,11 @@
                 <label  class="form-label">Total de Litros:</label>
             </div>
             <div class="col-auto" id="textBox">
-                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="number" name="litros" step="0.01" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
         </div>
         <p>
-            <button type="button" class="btn btn-primary btn-sm col-auto">Registrar</button>
+            <button type="submit" class="btn btn-primary btn-sm col-auto">Registrar</button>
         </p>
     </form>
 {{>footer_main}}

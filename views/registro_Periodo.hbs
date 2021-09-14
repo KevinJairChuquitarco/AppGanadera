@@ -1,12 +1,12 @@
 {{>header_main archivo="styles/styles_RegistroMain.css" title="Registro Periodo"}}
-    <form class="formulario">
+    <form class="formulario" action="/registro_Periodo" method="POST">
         <h2>Registrar Periodo</h2>
         <div class="row g-3 align-items-center">
             <div class="col-auto">
                 <label class="col-form-label" id="fecha">Fecha de Inicio:</label>
             </div>
             <div class="col-auto">
-                <input type="date" class="form-control" >
+                <input type="date" name="fechaInicio" class="form-control" >
             </div>
         </div>
         <div class="row g-3 align-items-center">
@@ -14,7 +14,7 @@
                 <label class="col-form-label">Fecha de Fin:</label>
             </div>
             <div class="col-auto">
-                <input type="date" class="form-control" >
+                <input type="date" name="fechaFin" class="form-control" >
             </div>
         </div>
         <div class="row g-3 align-items-center">
@@ -22,7 +22,7 @@
                 <label  class="form-label">Descripción:</label>
             </div>
             <div class="col-auto" id="textBox">
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" name="descripcion" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
         </div>
         <div class="row g-3 align-items-center">
@@ -30,11 +30,11 @@
                 <label  class="form-label">Precio de la Leche:</label>
             </div>
             <div class="col-auto" id="textBox">
-                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="number" name="precio" step="0.01" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
         </div>
         <p>
-            <button type="button" class="btn btn-primary btn-sm col-auto">Registrar</button>
+            <button type="submit" class="btn btn-primary btn-sm col-auto">Registrar</button>
         </p>
     </form>
 {{>footer_main}}

@@ -44,6 +44,28 @@ const funciones = {
                 console.log('Categoría Registrada con éxito '+recordset.rowsAffected);  
             });
         });
+    },
+    RegistrarDistribuidor: function (nombre,ruc,direccion) {
+        sql.connect(config, function (err) {
+            if (err) console.log(err);
+            var request = new sql.Request();
+            request.query(`Insert into Distribuidor values('${nombre}','${ruc}','${direccion}')`, function (err, recordset) {       
+                if (err) console.log(err);
+                else
+                console.log('Distribuidor Registrado con éxito '+recordset.rowsAffected);  
+            });
+        });
+    },
+    RegistrarPeriodo: function (fechaInicio,fechaFin,descripcion,precio) {
+        sql.connect(config, function (err) {
+            if (err) console.log(err);
+            var request = new sql.Request();
+            request.query(`Insert into Periodo values ('${fechaInicio}','${fechaFin}','${descripcion}',${precio})`, function (err, recordset) {       
+                if (err) console.log(err);
+                else
+                console.log('Periodo Registrado con éxito '+recordset.rowsAffected);  
+            });
+        });
     }
 }
 //funciones.obtenerDatosUsuario(1);

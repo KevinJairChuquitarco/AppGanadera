@@ -62,7 +62,7 @@ app.get('/registrarUsuario',(req,res)=>{
 
 app.post('/registrarUsuario', async(req,res)=>{
     let datos = req.body;
-    funciones.RegistrarUsuario(datos.nombre,'2000/12/01',datos.telefono,datos.email,datos.password);
+    funciones.RegistrarUsuario(datos.nombre,datos.fechaNacimiento,datos.telefono,datos.email,datos.password);
     res.redirect('/inicio_usuario');
 });
 
@@ -75,8 +75,9 @@ app.get('/registro_Bovino',(req,res)=>{
         let conexion = await sql.connect(config);
         const usuario = app.locals.user;
       //  console.log(usuario.Codigo_usu);
-        const result =  await conexion.request().query("Select cg.Nombre_cat, cg.Codigo_cat, cg.Descripcion_cat from CategoriaGanado cg INNER JOIN Bovino bv ON bv.Codigo_usu = "+ usuario.Codigo_usu+" and cg.Codigo_cat = bv.Codigo_cat");
-      // Select cg.Nombre_cat, cg.Codigo_cat, cg.Descripcion_cat from CategoriaGanado cg INNER JOIN Bovino bv ON bv.Codigo_usu ='3' and cg.Codigo_cat = bv.Codigo_cat;
+        //const result =  await conexion.request().query("Select cg.Nombre_cat, cg.Codigo_cat, cg.Descripcion_cat from CategoriaGanado cg INNER JOIN Bovino bv ON bv.Codigo_usu = "+ usuario.Codigo_usu+" and cg.Codigo_cat = bv.Codigo_cat");
+        const result =  await conexion.request().query(`select distinct CategoriaGanado.Nombre_cat, CategoriaGanado.Codigo_cat,CategoriaGanado.Descripcion_cat from CategoriaGanado inner join  Bovino on Bovino.Codigo_usu = ${usuario.Codigo_usu}`);
+        // Select cg.Nombre_cat, cg.Codigo_cat, cg.Descripcion_cat from CategoriaGanado cg INNER JOIN Bovino bv ON bv.Codigo_usu ='3' and cg.Codigo_cat = bv.Codigo_cat;
         const categorias = result.recordset;
         return categorias;
     }
@@ -116,17 +117,68 @@ app.post('/registro_Bovino',(req,res)=>{
 app.get('/registro_Categoria',(req,res)=>{
     res.render('registro_Categoria');
 });
-
+app.post('/registro_Categoria',(req,res)=>{
+    let categoria = req.body; 
+    funciones.RegistrarCategoria(categoria.nombre,categoria.descripcion);
+    res.render('inicio_usuario');
+});
 
 app.get('/registro_Distribuidor',(req,res)=>{
     res.render('registro_Distribuidor');
 });
-app.get('/registro_LecheDiario',(req,res)=>{
-    res.render('registro_LecheDiario');
+app.post('/registro_Distribuidor',(req,res)=>{
+    let distribuidor = req.body;
+    let distribuidorDB;
+    async function getDatos(ruc) {
+        let pool = await sql.connect(config);
+        let salida =await pool.request().query(`select *from Distribuidor where RUC_dis =\'${ruc}\'`)
+        distribuidorDB = salida.recordset[0];
+    }
+    getDatos(distribuidor.ruc);
+    setTimeout(() => { 
+        if(distribuidorDB == undefined){
+            funciones.RegistrarDistribuidor(distribuidor.nombre,distribuidor.ruc,distribuidor.direccion);
+            console.log('Registrado con éxito');
+            res.render('inicio_usuario');
+        }else{
+            console.log('Error, ya existe ese ruc, Verifique datos de distribuidor')
+            res.render('registro_Distribuidor');
+        }
+    }, 1000);
 });
+
 app.get('/registro_Periodo',(req,res)=>{
     res.render('registro_Periodo');
 });
+app.post('/registro_Periodo',(req,res)=>{
+    let periodo = req.body;
+    let periodoDB;
+    async function getDatos(fechaInicio) {
+        let pool = await sql.connect(config);
+        let salida =await pool.request().query(`Select *from Periodo where FechaInicio_per =\'${fechaInicio}\'`)
+        periodoDB = salida.recordset[0];
+    }
+    getDatos(periodo.fechaInicio);
+    setTimeout(() => { 
+        if(periodoDB == undefined){
+            funciones.RegistrarPeriodo(periodo.fechaInicio,periodo.fechaFin,periodo.descripcion,periodo.precio);
+            console.log('Registrado con éxito');
+            res.render('inicio_usuario');
+        }else{
+            console.log('Error, ya existe periodo')
+            res.render('registro_Periodo');
+        }
+    }, 1000);
+});
+
+app.get('/registro_LecheDiario',(req,res)=>{
+    res.render('registro_LecheDiario');
+});
+app.post('/registro_LecheDiario',(req,res)=>{ 
+    console.log('Registrado con éxito');
+    res.render('inicio_usuario');
+});
+
 app.get('/informe_Leche',(req,res)=>{
     res.render('informe_Leche');
 });
