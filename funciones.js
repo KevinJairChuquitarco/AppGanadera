@@ -2,7 +2,7 @@ const { text } = require("express");
 let sql = require("mssql");
 require('rest-mssql-nodejs');
 const config = require('./config');
-
+let arreglo;
 const funciones = {
     obtenerDatosUsuario: function(email, pass){
         sql.connect(config, function (err) {
@@ -29,6 +29,19 @@ const funciones = {
                 if (err) console.log(err);
                 else
                 console.log('Usuario Registrado con éxito '+recordset.rowsAffected);  
+            });
+        });
+    },
+    LoginUs: function (email,id) {
+        sql.connect(config, function (err) {
+            if (err) console.log(err);
+            var request = new sql.Request();
+            request.query(`select *from Usuario where Email_usu=\'${email}\' and Password_usu=${id}`, function(error, results, fields) {
+                if (results) {
+                    return true;
+                } else {
+                    return false;
+                }			
             });
         });
     }

@@ -1,4 +1,5 @@
 const funciones = require('./funciones');
+let usuario;
 
 const express = require('express');
 const session = require('express-session');
@@ -76,6 +77,7 @@ app.get('/registro_Periodo',(req,res)=>{
 app.get('/informe_Leche',(req,res)=>{
     res.render('informe_Leche');
 });
+<<<<<<< HEAD
 //Método POST
 app.post('/inicioSesion',(req,res, next)=>{
     passport.authenticate('local.inicioSesion',{
@@ -84,6 +86,22 @@ app.post('/inicioSesion',(req,res, next)=>{
     })(req, res, next);
 });
 //Listen server
+=======
+<<<<<<< HEAD
+
+app.post('/inicioSesion',(req,res)=>{
+    usuario = req.body;
+    console.log(funciones.LoginUs(usuario.email, usuario.password))
+    if (funciones.LoginUs(usuario.email, usuario.password)==true) {
+        res.send('exito');
+	} else {
+		res.send('Please enter Username and Password!');
+	}
+});
+
+=======
+>>>>>>> 34dde034f4cde3c5d5106eb343b86f15cf7fdc3e
+>>>>>>> 3540163d98b1cad141cb483ac603dbef8b5d5235
 app.listen(port,()=>{
     console.log(`Escuchando el puerto ${port}`);
 });
