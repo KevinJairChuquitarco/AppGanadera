@@ -44,6 +44,12 @@ app.get('/',(req,res)=>{
 app.get('/inicioSesion',(req,res)=>{
     res.render('inicioSesion');
 });
+app.post('/inicioSesion',(req,res, next)=>{
+    passport.authenticate('local.inicioSesion',{
+        successRedirect: '/inicio_usuario',
+        failureRedirect: '/inicioSesion'
+    })(req, res, next);
+});
 
 app.get('/registrarUsuario',(req,res)=>{
     res.render('registrarUsuario');
@@ -62,9 +68,37 @@ app.get('/inicio_usuario',(req,res)=>{
 app.get('/registro_Bovino',(req,res)=>{
     res.render('registro_Bovino');
 });
+app.post('/registro_Bovino',(req,res)=>{
+    let bovino = req.body;
+    let bovinoDB;
+    async function getDatos(codigo) {
+        let pool = await sql.connect(config);
+        let salida =await pool.request().query(`select *from Bovino where Codigo_bov=\'${codigo}\'`)
+        bovinoDB = salida.recordset[0];
+    }
+    getDatos(bovino.codigo);
+    setTimeout(() => { 
+        if(bovinoDB == undefined){
+            //funciones.RegistrarBovino('datos ');
+            console.log('Registrado con éxito');
+            res.render('inicio_usuario');
+        }else{
+            console.log('Error, ya existe ese bovino')
+            res.render('registro_Bovino');
+        }
+    }, 1000);
+});
+
+
 app.get('/registro_Categoria',(req,res)=>{
     res.render('registro_Categoria');
 });
+app.post('/registro_Categoria',(req,res)=>{
+    let categoria = req.body; 
+    funciones.RegistrarCategoria(categoria.nombre,categoria.descripcion);
+    res.render('inicio_usuario');
+});
+
 app.get('/registro_Distribuidor',(req,res)=>{
     res.render('registro_Distribuidor');
 });
@@ -78,12 +112,6 @@ app.get('/informe_Leche',(req,res)=>{
     res.render('informe_Leche');
 });
 //Método POST
-app.post('/inicioSesion',(req,res, next)=>{
-    passport.authenticate('local.inicioSesion',{
-        successRedirect: '/inicio_usuario',
-        failureRedirect: '/inicioSesion'
-    })(req, res, next);
-});
 //Listen server
 app.listen(port,()=>{
     console.log(`Escuchando el puerto ${port}`);

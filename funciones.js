@@ -1,24 +1,15 @@
-const { text } = require("express");
 let sql = require("mssql");
-require('rest-mssql-nodejs');
 const config = require('./config');
-let arreglo;
 const funciones = {
-    obtenerDatosUsuario: function(email, pass){
+    obtenerDatosUsuario: function(email){
         sql.connect(config, function (err) {
             if (err) console.log(err);
             var request = new sql.Request();
-            request.query(`Select Email_usu, Password_usu from Usuario where Email_usu='${email}'`, async (err, results) => {
-                if(results.recordset.length != 0){
-                    let passBD = results.recordset[0].Password_usu;
-                    if(results.recordset.length == 0 || !(passBD.trim() === pass )){
-                        console.log("Usuario Y/O password Incorrectas");
-                    }else{
-                        console.log("Login correcto");
-                    }                    
-                }                
+            request.query(`select *from Usuario where Email_usu=\'${email}\'`, function (err, recordset) {
+                
+                if (err) console.log(err) 
+                console.log(recordset.recordset);
             });
-            
         });
     },
     RegistrarUsuario : function (nombre,fechaNac,telefono,email,password) {
@@ -32,16 +23,25 @@ const funciones = {
             });
         });
     },
-    LoginUs: function (email,id) {
+    RegistrarCategoria: function (nombre,descripcion) {
         sql.connect(config, function (err) {
             if (err) console.log(err);
             var request = new sql.Request();
-            request.query(`select *from Usuario where Email_usu=\'${email}\' and Password_usu=${id}`, function(error, results, fields) {
-                if (results) {
-                    return true;
-                } else {
-                    return false;
-                }			
+            request.query(`Insert into CategoriaGanado Values ('${nombre}','${descripcion}')`, function (err, recordset) {       
+                if (err) console.log(err);
+                else
+                console.log('Categoría Registrada con éxito '+recordset.rowsAffected);  
+            });
+        });
+    },
+    RegistrarBovino: function (codigo,nombre,fechaNac,raza,sexo,codigoUs,codigoCat) {
+        sql.connect(config, function (err) {
+            if (err) console.log(err);
+            var request = new sql.Request();
+            request.query(`Insert into Bovino Values ('${codigo}','${nombre}','${fechaNac}','${raza}',1,'${sexo}',${codigoUs},${codigoCat});`, function (err, recordset) {       
+                if (err) console.log(err);
+                else
+                console.log('Categoría Registrada con éxito '+recordset.rowsAffected);  
             });
         });
     }
