@@ -1,5 +1,7 @@
 const funciones = require('./funciones');
-let usuario;
+
+let sql = require("mssql");
+const config = require('./config');
 
 const express = require('express');
 const session = require('express-session');
@@ -93,11 +95,7 @@ app.post('/registro_Bovino',(req,res)=>{
 app.get('/registro_Categoria',(req,res)=>{
     res.render('registro_Categoria');
 });
-app.post('/registro_Categoria',(req,res)=>{
-    let categoria = req.body; 
-    funciones.RegistrarCategoria(categoria.nombre,categoria.descripcion);
-    res.render('inicio_usuario');
-});
+
 
 app.get('/registro_Distribuidor',(req,res)=>{
     res.render('registro_Distribuidor');
