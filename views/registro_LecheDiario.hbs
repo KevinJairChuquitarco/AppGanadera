@@ -6,10 +6,13 @@
                 <label class="col-form-label">Periodo:</label>
             </div>
             <div class="col-auto" id="textBox">
-                <select class="form-select form-select-sm" name="sexo" >
+                <select class="form-select form-select-sm" name="periodo" >
                     <option selected>Seleccione</option>
-                    <option value="1">14-09-2021 al 29-09-2021</option>
-                    <option value="2">15-09-2021 al 30-09-2021</option>
+                    {{#each  this}}
+                        {{#if (isdefined Codigo_per)}}
+                        <option value = "{{Codigo_per}}"> {{FechaInicio_per}}  - {{FechaFin_per}}</option>
+                        {{/if}}
+                    {{/each}}
                 </select>
             </div>
         </div>
@@ -26,10 +29,13 @@
                 <label class="col-form-label">Distribuidor:</label>
             </div>
             <div class="col-auto" id="textBox">
-                <select class="form-select form-select-sm" name="sexo" >
+                <select class="form-select form-select-sm" name="distribuidor" >
                     <option selected>Seleccione</option>
-                    <option value="1"> Kevin Velasco</option>
-                    <option value="2"> Estefanía Castillo</option>
+                    {{#each  this}}
+                        {{#if (isdefined Codigo_dis)}}
+                        <option value = "{{Codigo_dis}}"> {{Nombre_dis}}</option>
+                        {{/if}}
+                    {{/each}}
                 </select>
             </div>
         </div>

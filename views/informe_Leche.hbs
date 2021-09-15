@@ -1,36 +1,48 @@
 {{>header_main archivo="styles/styles_Informe.css" title="Informe Final de la Leche"}}
-
- <section>
+     <form action="/informe_Leche" method="POST">
         <h2>Informe Leche</h2>
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label class="col-form-label">Periodo:</label>
+            </div>
+            <div class="col-auto" id="textBox">
+                <select class="form-select form-select-sm" name="codigoPeriodo" >
+                    <option selected>Seleccione</option>
+                    {{#each  this}}
+                        {{#if (isdefined Codigo_per)}}
+                        <option value = "{{Codigo_per}}"> {{FechaInicio_per}}  -  {{FechaFin_per}}</option>
+                        {{/if}}
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <p>
+            <button type="submit" class="btn btn-primary btn-sm col-auto">Consultar</button>
+        </p>
+        
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Día</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Nombre del Distribuidor</th>
+                    <th scope="col">Total de Litros</th>
+                    <th scope="col">Precio de la Leche</th>
+                    <th scope="col">Total a cobrar</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                {{#each  this}}
+                    <tr>
+                        {{#if (isdefined Nombre_dis)}}
+                            <th scope="row">{{Nombre_dis}}</th>
+                            <td>{{Total_litros}}</td>
+                            <td>{{PrecioLeche_per}}</td>
+                            <td>{{Total_dolares}}</td>
+                        {{/if}}
+                    </tr>
+                        
+                {{/each}}
             </tbody>
           </table>      
-    </section>
+    </form>
 
     {{>footer_main}}

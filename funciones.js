@@ -66,6 +66,17 @@ const funciones = {
                 console.log('Periodo Registrado con éxito '+recordset.rowsAffected);  
             });
         });
+    },
+    RegistrarProduccionDiaria: function (fecha,litros,codigoUsu,codigoDis,codigoPer) {
+        sql.connect(config, function (err) {
+            if (err) console.log(err);
+            var request = new sql.Request();
+            request.query(`Insert into ProduccionDiaria values ('${fecha}',${litros},${codigoUsu},${codigoDis},${codigoPer})`, function (err, recordset) {       
+                if (err) console.log(err);
+                else
+                console.log('Produccion Diaria Registrada con éxito '+recordset.rowsAffected);  
+            });
+        });
     }
 }
 //funciones.obtenerDatosUsuario(1);

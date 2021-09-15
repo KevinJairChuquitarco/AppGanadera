@@ -70,37 +70,17 @@ app.get('/inicio_usuario',(req,res)=>{
     res.render('inicio_usuario');    
 });
 app.get('/registro_Bovino',(req,res)=>{
-    /*var fs = require('fs');
-    const getCategoriasBD = async()=>{
-        let conexion = await sql.connect(config);
-        const usuario = app.locals.user;
-      //  console.log(usuario.Codigo_usu);
-        //const result =  await conexion.request().query("Select cg.Nombre_cat, cg.Codigo_cat, cg.Descripcion_cat from CategoriaGanado cg INNER JOIN Bovino bv ON bv.Codigo_usu = "+ usuario.Codigo_usu+" and cg.Codigo_cat = bv.Codigo_cat");
-        const result =  await conexion.request().query(`select distinct CategoriaGanado.Nombre_cat, CategoriaGanado.Codigo_cat,CategoriaGanado.Descripcion_cat from CategoriaGanado inner join  Bovino on Bovino.Codigo_usu = ${usuario.Codigo_usu}`);
-        // Select cg.Nombre_cat, cg.Codigo_cat, cg.Descripcion_cat from CategoriaGanado cg INNER JOIN Bovino bv ON bv.Codigo_usu ='3' and cg.Codigo_cat = bv.Codigo_cat;
-        const categorias = result.recordset;
-        return categorias;
-    }
-    getCategoriasBD().then(categorias => {
-        console.log(categorias);
-        var categoriasstring = JSON.stringify(categorias);
-        fs.writeFile("hbs/categorias.json", categoriasstring, function (err) {
-            if(err) console.log('error', err);
-            else console.log('Archivo guardado');
-        });
-        res.render('registro_Bovino');
-    })*/
-    let bovinoDB;
+    let categoriaDB;
     const usuario = app.locals.user;
     async function getDatos() {
         let pool = await sql.connect(config);
-        let salida =await pool.request().query(`select distinct CategoriaGanado.Nombre_cat, CategoriaGanado.Codigo_cat,CategoriaGanado.Descripcion_cat from CategoriaGanado inner join  Bovino on Bovino.Codigo_usu = ${usuario.Codigo_usu}`);
-        bovinoDB = salida.recordset;
+        let salida =await pool.request().query(`select distinct CategoriaGanado.Codigo_cat,CategoriaGanado.Nombre_cat from CategoriaGanado,Bovino where Bovino.Codigo_usu =${usuario.Codigo_usu}`);
+        categoriaDB = salida.recordset;
     }
     getDatos();
     setTimeout(() => {
-        console.log(bovinoDB)
-        res.render('registro_Bovino',bovinoDB);
+        console.log(categoriaDB)
+        res.render('registro_Bovino',categoriaDB);
     }, 1000);
 });
 app.post('/registro_Bovino',(req,res)=>{
@@ -183,15 +163,64 @@ app.post('/registro_Periodo',(req,res)=>{
 });
 
 app.get('/registro_LecheDiario',(req,res)=>{
-    res.render('registro_LecheDiario');
+    let distribuidorDB;
+    let periodoDB;
+    const usuario = app.locals.user;
+    async function getDatos() {
+        let pool = await sql.connect(config);
+        let salida =await pool.request().query(`select distinct Distribuidor.Codigo_dis, Distribuidor.Nombre_dis from Distribuidor,ProduccionDiaria where ProduccionDiaria.Codigo_usu =${usuario.Codigo_usu}`);
+        let salidaP =await pool.request().query(`select distinct Periodo.Codigo_per, Periodo.FechaInicio_per, Periodo.FechaFin_per from Periodo,ProduccionDiaria where ProduccionDiaria.Codigo_usu =${usuario.Codigo_usu}`);
+        distribuidorDB = salida.recordset;
+        periodoDB = salidaP.recordset;
+    }
+    getDatos();
+    setTimeout(() => {
+        let datos = distribuidorDB.concat(periodoDB);
+        console.log(datos)
+        res.render('registro_LecheDiario',datos);
+    }, 1000);
 });
 app.post('/registro_LecheDiario',(req,res)=>{ 
-    console.log('Registrado con éxito');
+    let datos = req.body;
+    console.log(datos)
+    const usuario = app.locals.user;
+    funciones.RegistrarProduccionDiaria(datos.fecha,datos.litros,usuario.Codigo_usu,datos.distribuidor,datos.periodo)
     res.render('inicio_usuario');
 });
 
 app.get('/informe_Leche',(req,res)=>{
-    res.render('informe_Leche');
+    let periodoDB;
+    const usuario = app.locals.user;
+    async function getDatos() {
+        let pool = await sql.connect(config);
+        let salidaP =await pool.request().query(`select distinct Periodo.Codigo_per, Periodo.FechaInicio_per, Periodo.FechaFin_per from Periodo,ProduccionDiaria where ProduccionDiaria.Codigo_usu =${usuario.Codigo_usu}`);
+        periodoDB = salidaP.recordset;
+    }
+    getDatos();
+    setTimeout(() => {
+        console.log(periodoDB)
+        res.render('informe_Leche',periodoDB);
+    }, 1000);
+});
+
+app.post('/informe_Leche',(req,res)=>{
+    let informe= req.body;
+    let informeDB;
+    let periodoDB;
+    const usuario = app.locals.user;
+    async function getDatos() {
+        let pool = await sql.connect(config);
+        let salida =await pool.request().query(`Select  dis.Nombre_dis, sum(prd.CantidadLitros_prd) as Total_litros, per.PrecioLeche_per ,sum(prd.CantidadLitros_prd)* per.PrecioLeche_per as Total_dolares from Periodo per, Distribuidor dis, ProduccionDiaria prd where per.Codigo_per=${informe.codigoPeriodo} group by dis.Nombre_dis, per.PrecioLeche_per;`);
+        let salidaP =await pool.request().query(`select distinct Periodo.Codigo_per, Periodo.FechaInicio_per, Periodo.FechaFin_per from Periodo,ProduccionDiaria where ProduccionDiaria.Codigo_usu =${usuario.Codigo_usu}`);
+        informeDB = salida.recordset;
+        periodoDB = salidaP.recordset;
+    }
+    getDatos();
+    setTimeout(() => {
+        let datos = informeDB.concat(periodoDB);
+        console.log(informeDB)
+        res.render('informe_Leche',datos);
+    }, 1000);
 });
 //Método POST
 //Listen server

@@ -30,12 +30,12 @@ passport.use('local.inicioSesion', new LocalStrategy({
 
 //Serializar
 passport.serializeUser((user, done) =>{
-    console.log('Usuario serializado');
+    //console.log('Usuario serializado');
     done(null, user.Email_usu);
 });
 
 passport.deserializeUser(async (id,done)=>{
     const rows = (await conexion).request().query(`Select *from Usuario where Email_usu = '${id}'`);   
-    console.log('Usuario de-serializado');
+    //console.log('Usuario de-serializado');
     done(null, (await rows).recordset[0]);
 });
