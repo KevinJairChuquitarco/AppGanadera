@@ -9,8 +9,7 @@ passport.use('local.inicioSesion', new LocalStrategy({
     passReqToCallback: true
 }, async (req, email, password, done)=>{
     const result = (await conexion).request().query(`Select *from Usuario where Email_usu = '${email}'`);
-    if((await result).recordset.length > 0) {
-        
+    if((await result).recordset.length > 0) {        
         const user = (await result).recordset[0];
         const passBD = user.Password_usu.trim();
         if((passBD === password )){

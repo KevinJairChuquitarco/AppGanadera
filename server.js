@@ -60,10 +60,32 @@ app.get('/registrarUsuario',(req,res)=>{
     res.render('registrarUsuario');
 });
 
-app.post('/registrarUsuario', async(req,res)=>{
+app.post('/registrarUsuario', async(req,res,next)=>{
     let datos = req.body;
-    funciones.RegistrarUsuario(datos.nombre,datos.fechaNacimiento,datos.telefono,datos.email,datos.password);
-    res.redirect('/inicio_usuario');
+    let datosDB;
+    async function getDatos(email) {
+        let pool = await sql.connect(config);
+        let salida =await pool.request().query(`select *from Usuario where Email_usu=\'${email}\'`)
+        datosDB = salida.recordset[0];
+    }
+    getDatos(datos.email);
+    setTimeout(() => { 
+        if(datosDB == undefined){
+            funciones.RegistrarUsuario(datos.nombre,datos.fechaNacimiento,datos.telefono,datos.email,datos.password);
+            
+            setTimeout(() => {
+                passport.authenticate('local.inicioSesion',{
+                    successRedirect: '/inicio_usuario',
+                    failureRedirect: '/inicioSesion'
+                })(req, res, next);
+            }, 1000);
+            //console.log('Registrado con éxito');
+            //res.redirect('/inicio_usuario');
+        }else{
+            console.log('Error, ya existe ese usuario')
+            res.render('registrarUsuario');
+        }
+    }, 1000);
 });
 
 app.get('/inicio_usuario',(req,res)=>{
@@ -74,7 +96,8 @@ app.get('/registro_Bovino',(req,res)=>{
     const usuario = app.locals.user;
     async function getDatos() {
         let pool = await sql.connect(config);
-        let salida =await pool.request().query(`select distinct CategoriaGanado.Codigo_cat,CategoriaGanado.Nombre_cat from CategoriaGanado,Bovino where Bovino.Codigo_usu =${usuario.Codigo_usu}`);
+        
+        et salida =await pool.request().query(`select distinct CategoriaGanado.Codigo_cat,CategoriaGanado.Nombre_cat from CategoriaGanado,Bovino where Bovino.Codigo_usu =${usuario.Codigo_usu}`);
         categoriaDB = salida.recordset;
     }
     getDatos();
@@ -94,7 +117,7 @@ app.post('/registro_Bovino',(req,res)=>{
     getDatos(bovino.codigo);
     setTimeout(() => { 
         if(bovinoDB == undefined){
-           funciones.RegistrarBovino(bovino.codigo,bovino.nombre,bovino.fechaNac,'Holstein',bovino.sexo,req.user.Codigo_usu,bovino.categoria);
+            funciones.RegistrarBovino(bovino.codigo,bovino.nombre,bovino.fechaNac,'Holstein',bovino.sexo,req.user.Codigo_usu,bovino.categoria);
             console.log('Registrado con éxito');
             res.render('inicio_usuario');
         }else{
@@ -210,8 +233,8 @@ app.post('/informe_Leche',(req,res)=>{
     const usuario = app.locals.user;
     async function getDatos() {
         let pool = await sql.connect(config);
-        let salida =await pool.request().query(`Select  dis.Nombre_dis, sum(prd.CantidadLitros_prd) as Total_litros, per.PrecioLeche_per ,sum(prd.CantidadLitros_prd)* per.PrecioLeche_per as Total_dolares from Periodo per, Distribuidor dis, ProduccionDiaria prd where per.Codigo_per=${informe.codigoPeriodo} group by dis.Nombre_dis, per.PrecioLeche_per;`);
-        let salidaP =await pool.request().query(`select distinct Periodo.Codigo_per, Periodo.FechaInicio_per, Periodo.FechaFin_per from Periodo,ProduccionDiaria where ProduccionDiaria.Codigo_usu =${usuario.Codigo_usu}`);
+        let salida =await pool.request().query(`Select dis.Nombre_dis, sum(prd.CantidadLitros_prd) as Total_litros, per.PrecioLeche_per ,sum(prd.CantidadLitros_prd)* per.PrecioLeche_per as Total_dolares from ProduccionDiaria prd,Periodo per, Distribuidor dis where prd.Codigo_per=${informe.codigoPeriodo} and prd.Codigo_per=per.Codigo_per and prd.Codigo_dis =dis.Codigo_dis group by dis.Nombre_dis, per.PrecioLeche_per;`);
+        let salidaP =await pool.request().query(`Select distinct Periodo.Codigo_per, Periodo.FechaInicio_per, Periodo.FechaFin_per from Periodo,ProduccionDiaria where ProduccionDiaria.Codigo_usu =${usuario.Codigo_usu}`);
         informeDB = salida.recordset;
         periodoDB = salidaP.recordset;
     }
