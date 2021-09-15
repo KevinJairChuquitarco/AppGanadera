@@ -96,8 +96,7 @@ app.get('/registro_Bovino',(req,res)=>{
     const usuario = app.locals.user;
     async function getDatos() {
         let pool = await sql.connect(config);
-        
-        et salida =await pool.request().query(`select distinct CategoriaGanado.Codigo_cat,CategoriaGanado.Nombre_cat from CategoriaGanado,Bovino where Bovino.Codigo_usu =${usuario.Codigo_usu}`);
+        let salida =await pool.request().query(`select distinct CategoriaGanado.Codigo_cat,CategoriaGanado.Nombre_cat from CategoriaGanado,Bovino where Bovino.Codigo_usu =${usuario.Codigo_usu}`);
         categoriaDB = salida.recordset;
     }
     getDatos();
