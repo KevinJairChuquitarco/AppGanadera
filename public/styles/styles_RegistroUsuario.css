@@ -45,7 +45,7 @@ header a{
     justify-content:space-between;      
 }
 #textBox{
-    width: 45%;
+    width: 40%;
 }
 .formulario p{
     text-align: center;
@@ -94,10 +94,10 @@ footer div img {
         margin: 5px 5%;  
     }
     header{
-        height: auto;
+        height: auto !important;
     }
     .formulario{
-        height: auto;
+        height: auto !important;
     }
     .fecha {
         width: 160px !important;
@@ -158,33 +158,33 @@ footer div img {
 }
 @media (min-height: 590px) {
     .formulario{
-        height: 75vh;
+        height: 75vh !important;
     }
 }
 
 @media (min-height: 640px) {
     .formulario{
-        height: 70vh;
+        height: 70vh !important;
     }
 }
 @media (min-height: 650px) {
     .formulario{
-        height: 75vh;
+        height: 75vh !important;
     }
 }
 @media (min-height: 660px) {
     .formulario{
-        height: 71vh;
+        height: 71vh !important;
     }
 }
 @media (min-height: 720px) {
     .formulario{
-        height: 75vh;
+        height: 75vh !important;
     }
 }
 @media (min-height: 810px) {
     .formulario{
-        height: 75.5vh;
+        height: 75.5vh !important;
     }
 }
 @media (max-width: 1024px) and (min-height: 1366px), (max-width: 768px) and (min-height: 1024px) {

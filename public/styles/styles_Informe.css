@@ -33,12 +33,24 @@ section {
     height: 70vh;
 }
 
-section h2 {
-    margin: 2% 0;
+.formulario h2{
+    margin: 2%;
     text-align: center;
     font-size: 2rem;
+    padding:0 2%;
 }
-
+.btn {
+    background-color:#3E73B9 !important;
+    /* margin: 4% 0; */
+    margin: 1% 0;
+    padding: 1% 2% !important;
+}
+#seleccione{
+    margin: 0 5%;
+}
+table{
+    margin: 2.5%;
+}
 /* Codigo para el footer */
 footer {
     margin: 0 ;
@@ -62,37 +74,37 @@ footer  div{
     padding: 1.8%;
 }
 @media (max-width: 1024px) and (min-height: 1366px), (max-width: 768px) and (min-height: 1024px){
-    .table{
+    .table, #seleccione{
         font-size: 1.3rem;
     }
-    section h2 {
+    .formulario h2 {
         font-size: 2rem;
     }
     .textoFooter{
         padding: 2%;
         font-size: 1.5rem;
     }
-    header p img {
-        width: 60%;
-        padding: 5%;
+    .logoHeader img{
+        width: 40%;
+        margin: 5% 10%;
     }
-    .textoHeader{
-        padding: 5%;
-        font-size: 1.5rem;
+    .textoHeader a {
+        font-size: 1.4rem;
+        padding: 2%;
     }
 }
 @media (max-width: 630px) {
-    .table{
+    .table, #seleccione{
         font-size: 0.8rem;
     }
-    section h2 {
+    .formulario h2 {
         font-size: 1.5rem;
     }
     .textoFooter{
         padding: 2%;
         font-size: 0.9rem;
     }
-    header p img {
+    .logoHeader img {
         width: 50%;
         padding: 5%;
     }
@@ -100,12 +112,15 @@ footer  div{
         padding: 5%;
         font-size: 0.9rem;
     }
+    .textoHeader {
+        padding: 2%;
+    }
 }
 @media (max-width: 430px) {
-    .table{
+    .table,#seleccione{
         font-size: 0.7rem;
     }
-    section h2 {
+    .formulario h2 {
         font-size: 1.2rem;
     }
     .textoHeader{
@@ -115,24 +130,27 @@ footer  div{
     .textoFooter{
         font-size: 0.75rem;
     }
-    header p img {
+    .logoHeader img {
         width: 80%;
+    }
+    input, select, .btn{
+        font-size: 0.75rem !important;
     }
 }
 @media (max-width: 340px) {
-    .table{
+    .table,#seleccione{
         font-size: 0.55rem;
     }
     .textoHeader{
         font-size: 0.7rem;
     }
-    section h2 {
+    .formulario h2 {
         font-size: 1.1rem;
     }
     .textoFooter{
         font-size: 0.7rem;
     }
-    header p img {
+    .logoHeader img {
         width: 70%;
     }
 }

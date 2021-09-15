@@ -1,7 +1,7 @@
 {{>header_main archivo="styles/styles_Informe.css" title="Informe Final de la Leche"}}
-     <form action="/informe_Leche" method="POST">
+     <form class="formulario" action="/informe_Leche" method="POST">
         <h2>Informe Leche</h2>
-        <div class="row g-3 align-items-center">
+        <div id="seleccione" class="row g-3 align-items-center">
             <div class="col-auto">
                 <label class="col-form-label">Periodo:</label>
             </div>
@@ -15,10 +15,11 @@
                     {{/each}}
                 </select>
             </div>
+            <p>
+                <button type="submit" class="btn btn-primary btn-sm col-auto">Consultar</button>
+            </p>
         </div>
-        <p>
-            <button type="submit" class="btn btn-primary btn-sm col-auto">Consultar</button>
-        </p>
+        
         <table class="table">
             <thead>
                 <tr>

@@ -75,6 +75,44 @@ footer  div{
     text-align: center;
     padding: 2%;
 }
+
+
+@media (max-width: 840px) {    
+    .logoHeader img{
+        width: 40%;
+        padding: 2%;
+    }
+    .textoHeader {
+        padding: 2%;
+    }
+}
+@media (max-width: 760px) {
+    .textoHeader a{
+        font-size: 0.70rem;
+    }
+}
+@media (max-width: 666px) {
+    .textoHeader a {
+        font-size: 0.8rem;
+    }
+    .textoFooter{
+        font-size: 0.85em;
+    }
+    .logoHeader img{
+        width: 40%;
+    }
+    .textoHeader{
+        display: grid;
+        grid-row: inherit;
+        width: 90%;
+    }
+    .textoHeader a{
+        padding: 1%;
+    }
+    #aux{
+        display: none;
+    }
+}
 @media (max-width: 550px) {
     .options{
         display: flexbox;
@@ -84,18 +122,46 @@ footer  div{
     #btn1,#btn2{
         margin: 0 0;
     }
+    .textoFooter{
+        font-size: 0.8rem;
+        margin:  0;
+    }
+    .textoHeader a{
+        font-size: 0.8rem;
+        padding: 1%;
+    }
 }
 @media (max-width: 400px) {
     .dropdown button{
         height: 150px;
         width: 150px;
     }
+    .logoHeader img{
+        width: 40%;
+        margin:  2% 1% 0 2%;
+        padding: 1%;
+    }
     #btn1{
         background-position:right;
     }
-    .textoFooter,.textoHeader {
+    .textoFooter {
         font-size: 0.8rem;
         padding: 2%;
+    }
+    #aux{
+        display: inline;
+    }
+    .textoHeader{
+        display: inline;
+        padding: 1%;
+        margin:  0 5% 0 0;
+    }
+    header{
+        display: flexbox;
+        flex-direction: column; 
+    }
+    .textoHeader a,.textoFooter{
+        font-size: 0.95rem;
     }
 }
 @media (max-width: 290px) {
@@ -107,39 +173,68 @@ footer  div{
         align-self:flex-end;
         padding: 0;
     }
+    #aux{
+        display: inline;
+    }
+    .textoHeader{
+        display: inline;
+    }
+    .textoHeader a,.textoFooter{
+        font-size: 0.85rem;
+    }
+
 }
 @media (min-height: 560px) {
     .options{
-        height: 76vh;
+        height: 76vh !important;
     }
 }
 @media (min-height: 640px) {
     .options{
-        height: 78vh;
+        height: 78vh !important;
     }
 }
 @media (min-height: 710px) {
     .options{
-        height: 79vh;
+        height: 79vh !important;
     }
 }
 @media (min-height: 730px) {
     .options{
-        height: 81vh;
+        height: 81vh !important;
     }
 }
 @media (min-height: 810px) {
     .options{
-        height: 82.5vh;
+        height: 82.5vh !important;
     }
 }
 @media (max-width: 1024px) and (min-height: 1366px), (max-width: 768px) and (min-height: 1024px){
-    .textoFooter,.textoHeader {
+    .textoFooter{
         font-size: 1.6rem;
         padding: 2%;
     }
-    header p img {
-        width: 250px;
+    .textoHeader{
+        align-self:flex-end;
+        padding: 0;
+    }
+    #aux{
+        display: inline !important;
+    }
+    .textoHeader{
+        display: inline !important;
+    }
+    header{
+        display:grid;
+        grid-column: 49% 49%;
+    }
+    .logoHeader img{
+        width: 40%;
+        margin:  2% 1% 0 2%;
+        padding: 1%;
+    }
+    .textoHeader a {
+        font-size: 1.4rem;
         padding: 2%;
     }
     .dropdown button{
@@ -155,9 +250,9 @@ footer  div{
         margin-right: 50px;
     }
     .options{
-        height: 73vh;
+        height: 74vh !important;
     }
     footer{
-        height: 15vh;
+        height: 10vh !important;
     }
 }
