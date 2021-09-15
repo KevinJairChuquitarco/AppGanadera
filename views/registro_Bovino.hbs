@@ -44,8 +44,12 @@
             <div class="col-auto" id="textBox">
                 <select class="form-select form-select-sm" name="categoria">
                     <option selected>Seleccione</option>
-                    {{#getCategoriasM}}
-                    {{/getCategoriasM}}                  
+                    {{#each  this}}
+                        {{#if (isdefined Codigo_cat)}}
+                        <option value = "{{Codigo_cat}}"> {{Nombre_cat}}</option>
+                        {{/if}}
+                        
+                    {{/each}}                
                 </select>
             </div>
         </div>
